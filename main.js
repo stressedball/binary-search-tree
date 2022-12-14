@@ -149,7 +149,7 @@ insert(48);
 // find(67); // returns the value
 // find(6521); // returns console.log message
 
+prettyPrint(tree.root);
 levelOrder();
 
-prettyPrint(tree.root);
 export {tree, Node};
