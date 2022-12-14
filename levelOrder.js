@@ -1,3 +1,6 @@
+// BREADTH FIRST TRAVERSAL
+// USES FIFO - QUEUES
+
 'use strict';
 
 import {tree} from './main.js';
@@ -14,6 +17,7 @@ function levelOrder(node = tree.root) {
     enqueue(node); // tree.root
 
     while (getQueue() !== null) {
+
         let tempArray = [];
         let printArray = [];
         let target = head;
@@ -38,6 +42,7 @@ function levelOrder(node = tree.root) {
         emptyQueue(); // all nodes in the queue have been printed
 
         // condition statement to avoid loop enqueuing empty array
+        // we don't hit the while condition at this point, we don't go up
         if (tempArray < 1) { 
             return;
         }

@@ -1,8 +1,5 @@
 'use strict';
 
-import {deleteNode, find, insert} from './functions.js';
-import { levelOrder } from './levelOrder.js';
-
 class Node {
     constructor(value) {
         this.data = value;
@@ -26,6 +23,7 @@ function buildTree(array) {
     return makeTree(array);
 }
 
+// not needed
 function makeTree(array) {
     const end = array.length;
     const mid = Math.floor(end / 2);
@@ -126,30 +124,5 @@ const example = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 154];
 // make new tree from example array
 const tree = new Tree(example);
 
-// adding a few nodes
-insert(121);
-insert(1349);
-insert(-65);
-insert(-65); // duplicate returns message
-insert(54); 
-insert(678);
-insert(48);
 
-// Deleting few nodes 
-// deleteNode(678); // leaf 
-// deleteNode(54); // one children
-// deleteNode(48); // leaf
-// deleteNode(324); // one children
-// deleteNode(154); // removing child with populated children
-// deleteNode(67);
-// deleteNode(5);
-// deleteNode(9); // root ?
-
-// finding a value
-// find(67); // returns the value
-// find(6521); // returns console.log message
-
-prettyPrint(tree.root);
-levelOrder();
-
-export {tree, Node};
+export {prettyPrint, tree, Node};
