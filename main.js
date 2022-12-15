@@ -94,18 +94,14 @@ function merge(array, left, right, mid, end) {
 }
 
 function removeDuplicates(array) {
-    const uniques = []
     for (let i = 0; i < array.length; i++) {
         let value = array[i];
-        if (uniques.length === 0 && uniques[0] === undefined) {
-            uniques.push(array[i]);
-        } else {
-            if (uniques.filter(el => el === value).length === 0) {
-                uniques.push(array[i]);
-            }
+        if (array.filter(el => el === value).length > 1) {
+            array.splice(i, 1);
+            i--;
         }
     }
-    return uniques;
+    return array;
 }
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -119,7 +115,7 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 }
 
 const example = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 154];
-// [1, 7, 4, 23, 8, 9, 3, 5, 67, 6345, 324, 154] // removed duplicates
+// [1, 23, 8, 4, 3, 5, 7, 9, 67, 6345, 324, 154] // removed duplicates
 // [1, 3, 4, 5, 7, 8, 9, 23, 67, 154, 324, 6345] // Sorted
 // make new tree from example array
 const tree = new Tree(example);

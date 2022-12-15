@@ -1,9 +1,13 @@
 'use strict';
 
 import {deleteNode, find, insert} from './functions.js';
+import {height} from './height.js'
 import { levelOrder } from './levelOrder.js';
 import {prettyPrint, tree} from './main.js';
-import {preorder, inorder, postorder} from './InPrePostOrder.js';
+import {preOrder, inOrder, postOrder} from './InPrePostOrder.js';
+import { depth } from './depth.js';
+import { isBalanced } from './isBalanced.js';
+
 
 // adding a few nodes
 insert(121);
@@ -32,6 +36,12 @@ prettyPrint(tree.root);
 
 // levelOrder(); // printing levels
 
-// preorder(6345);
-// inorder(154);
-postorder(5);
+// preOrder(6345);
+// inOrder(154);
+// postOrder(5);
+
+// height(5); // prints root.node if no parameters are give;
+
+// depth(-65); // returns 4
+
+isBalanced();

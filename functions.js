@@ -9,13 +9,14 @@ function insert(n, node = tree.root) {
     }
     
     if (node.data === n) {
-        console.log('No duplicates')
+        console.log('No duplicates');
         return node;
     }
     
     if (node.data < n) {
         node.right = insert(n, node.right);
         return node;
+
     } else if (node.data > n) {
         node.left = insert(n, node.left);
         return node;
@@ -37,6 +38,7 @@ function deleteNode(n, node = tree.root) {
     return deleteHelper(node);
 }
 
+// local function
 function deleteHelper(node) {
 
     if (node.left === null && node.right === null) {
@@ -96,5 +98,6 @@ function find(n, node = tree.root) {
     return;
 
 }
+
 
 export {deleteNode, find, insert};

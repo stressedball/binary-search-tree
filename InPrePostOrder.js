@@ -5,8 +5,8 @@
 import { tree } from "./main.js";
 
 let array = [];
-// preorder : root left right
-function preorder(n, node = tree.root) {
+// preOrder : root left right
+function preOrder(n, node = tree.root) {
     
     if (node === null) {
         return;
@@ -32,8 +32,8 @@ function preorder(n, node = tree.root) {
         return;
     }
     
-    preorder(n, node.left);
-    preorder(n, node.right);
+    preOrder(n, node.left);
+    preOrder(n, node.right);
 
     // I keep needing conditions to avoid the stack returns
     if (node !== tree.root) {
@@ -43,8 +43,8 @@ function preorder(n, node = tree.root) {
     return console.log(array);
 }
 
-// inorder : left root right
-function inorder(n, node = tree.root) {
+// inOrder : left root right
+function inOrder(n, node = tree.root) {
 
     if (node === null) {
         return;
@@ -72,8 +72,8 @@ function inorder(n, node = tree.root) {
         return;
     }
 
-    inorder(n, node.left);
-    inorder(n, node.right);
+    inOrder(n, node.left);
+    inOrder(n, node.right);
 
     // I keep needing conditions to avoid the stack returns
     if (node !== tree.root) {
@@ -83,8 +83,8 @@ function inorder(n, node = tree.root) {
     return console.log(array);
 }
 
-// postorder : left right root
-function postorder(n, node = tree.root) {
+// postOrder : left right root
+function postOrder(n, node = tree.root) {
     if (node === null) {
         return;
     }
@@ -110,8 +110,8 @@ function postorder(n, node = tree.root) {
         return;
     }
     
-    postorder(n, node.right);
-    postorder(n, node.left);
+    postOrder(n, node.right);
+    postOrder(n, node.left);
 
     // I keep needing conditions to avoid the stack returns
     if (node !== tree.root) {
@@ -121,4 +121,4 @@ function postorder(n, node = tree.root) {
     return console.log(array);
 }
 
-export {inorder, postorder, preorder};
+export {inOrder, postOrder, preOrder};
