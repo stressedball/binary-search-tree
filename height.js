@@ -1,18 +1,20 @@
 'use strict';
 
-import {tree} from './main.js';
-
-
 let longest = 0;
 let tempLongest = 0;
-let tempRoot = null;
+let root = null;
 let leaf = null;
 let keepRoot = false;
 
-function height(n = null, node = tree.root) {
+function height(n = null, node) {
 
     if (node === null) {
         return;
+    }
+
+    if (keepRoot === false) {
+        root = node;
+        keepRoot = true;
     }
 
     if (n !== null) {
@@ -27,12 +29,7 @@ function height(n = null, node = tree.root) {
     }
 
     // either no numbers were passed or we have the correct nodes
-
     // we need to store the root value and keep it for the end
-    if (keepRoot === false) {
-        tempRoot = node;
-        keepRoot = true;
-    }
 
     n = null;
 
@@ -49,11 +46,17 @@ function height(n = null, node = tree.root) {
         return;
     }
     
-    if (node !== tempRoot) {
+    if (node !== root) {
         return;
     }
     
-    return console.log(`Longest path of node '${tempRoot.data}' is ${longest} ending at leaf : `, leaf);
+    keepRoot = false;
+    leaf = null;
+    tempLongest = 0;
+    root = null;
+    longest = 0;
+
+    return console.log(`Longest path of node '${root.data}' is ${longest} ending at leaf : `, leaf);
 }
 
 export {height};

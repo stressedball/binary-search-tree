@@ -3,11 +3,9 @@
 
 'use strict';
 
-import {tree} from './main.js';
-
 let head = null;
 
-function levelOrder(node = tree.root) {
+function levelOrder(node) {
     if (node === null) { // root node check
         return;
     }

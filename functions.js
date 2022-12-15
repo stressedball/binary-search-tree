@@ -1,6 +1,7 @@
 'use strict';
 
-import {Node, tree} from './main.js';
+import {Node} from './main.js';
+import {tree} from './script.js';
 
 function insert(n, node = tree.root) {
     if (node === null) {
@@ -9,7 +10,7 @@ function insert(n, node = tree.root) {
     }
     
     if (node.data === n) {
-        console.log('No duplicates');
+        console.log('Found existing value, returning.');
         return node;
     }
     
@@ -82,7 +83,7 @@ function find(n, node = tree.root) {
     }
 
     if (node.data === n) {
-        return console.log(node);
+        return console.log('Found node ' + node.data + ' Left : ' + node.left.data + ' Right : ' + node.right.data);
     }
 
     if (node.data < n) {

@@ -2,15 +2,23 @@
 // USES STACKS
 
 'use strict';
-import { tree } from "./main.js";
 
 let array = [];
+let keepRoot = false;
+let root = null;
+
 // preOrder : root left right
-function preOrder(n, node = tree.root) {
+function preOrder(n, node) {
     
     if (node === null) {
         return;
     }
+
+    if (keepRoot === false) {
+        keepRoot = true;
+        root = node;
+    }
+
 
     let printOut = '';
     printOut += 'Root ' + node.data + ' -> ';
@@ -36,18 +44,26 @@ function preOrder(n, node = tree.root) {
     preOrder(n, node.right);
 
     // I keep needing conditions to avoid the stack returns
-    if (node !== tree.root) {
+    if (node !== root) {
         return;
     }
+
+    keepRoot = false;
+    root = null;
     
     return console.log(array);
 }
 
 // inOrder : left root right
-function inOrder(n, node = tree.root) {
+function inOrder(n, node) {
 
     if (node === null) {
         return;
+    }
+
+    if (keepRoot === false) {
+        keepRoot = true;
+        root = node;
     }
 
     let printOut = '';
@@ -76,17 +92,25 @@ function inOrder(n, node = tree.root) {
     inOrder(n, node.right);
 
     // I keep needing conditions to avoid the stack returns
-    if (node !== tree.root) {
+    if (node !== root) {
         return;
     }
+
+    keepRoot = false;
+    root = null;
     
     return console.log(array);
 }
 
 // postOrder : left right root
-function postOrder(n, node = tree.root) {
+function postOrder(n, node) {
     if (node === null) {
         return;
+    }
+
+    if (keepRoot === false) {
+        keepRoot = true;
+        root = node;
     }
 
     let printOut = '';
@@ -114,11 +138,15 @@ function postOrder(n, node = tree.root) {
     postOrder(n, node.left);
 
     // I keep needing conditions to avoid the stack returns
-    if (node !== tree.root) {
+    if (node !== root) {
         return;
     }
+
+    keepRoot = false;
+    root = null;
     
     return console.log(array);
 }
+
 
 export {inOrder, postOrder, preOrder};

@@ -18,56 +18,52 @@ class Tree {
 
 function buildTree(array) {
     
-    array = removeDuplicates(array); // removing duplicates
-    mergeSort(array); // sorting and merging array
+    array = removeDuplicates(array); 
+    mergeSort(array); 
     return makeTree(array);
 }
 
-// not needed
 function makeTree(array) {
-    const end = array.length;
-    const mid = Math.floor(end / 2);
+    const mid = Math.trunc(array.length / 2);
     
-    if (end < 1) {
+    if (mid >= array.length) {
         return null;
     }
-
-    let midValue = array[mid];
-
-    const node = new Node(midValue);
+    
+    const node = new Node(array[mid]);
     node.left = makeTree(array.slice(0, mid));
-    node.right = makeTree(array.slice(mid + 1, end));
+    node.right = makeTree(array.slice(mid + 1, array.length));
 
     return node;
 }
 
 function mergeSort(array) {
    
-    const end = array.length;
-    let mid = Math.ceil(end / 2);
+    // if mid is 8.5 mid is 8
+    const mid = Math.trunc(array.length / 2);
 
-    if (end <= 1) {
+    if (mid < 1) {
         return;
     }
 
     const left = array.slice(0, mid);
-    const right = array.slice(mid, end);
+    const right = array.slice(mid, array.length);
 
     mergeSort(left);
     mergeSort(right);
     
-    merge(array, left, right, mid, end);
+    merge(array, left, right, mid);
+
     return array;
 }
 
-function merge(array, left, right, mid, end) {
-    
+function merge(array, left, right, mid) {
     let iLeft = 0;
     let iRight = 0;
 
     const tempArray = [];
 
-    while (iLeft < mid && iRight < end - mid) {
+    while (iLeft < mid && iRight < array.length - mid) {
         if (left[iLeft] < right[iRight]) {
             tempArray.push(left[iLeft]);
             iLeft++;
@@ -82,7 +78,7 @@ function merge(array, left, right, mid, end) {
         iLeft++;
     }
     
-    while (iRight < end - mid) {
+    while (iRight < array.length - mid) {
         tempArray.push(right[iRight]);
         iRight++;
     }
@@ -114,11 +110,6 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
     }
 }
 
-const example = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 154];
-// [1, 23, 8, 4, 3, 5, 7, 9, 67, 6345, 324, 154] // removed duplicates
-// [1, 3, 4, 5, 7, 8, 9, 23, 67, 154, 324, 6345] // Sorted
-// make new tree from example array
-const tree = new Tree(example);
 
-
-export {prettyPrint, tree, Node};
+export {buildTree, makeTree, merge, mergeSort, 
+    prettyPrint, Tree, Node};

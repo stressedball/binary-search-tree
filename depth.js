@@ -1,8 +1,10 @@
 'use strict';
-import {tree} from './main.js';
 
 let count = 0;
-function depth(n = null, node = tree.root) {
+let keepRoot = false;
+let root = null;
+
+function depth(n = null, node) {
 
     if (node === null) {
         return;
@@ -12,6 +14,11 @@ function depth(n = null, node = tree.root) {
         n = node.data;
     }
 
+    if (keepRoot === false) {
+        root = node;
+        keepRoot = true;
+    }
+
     if (node.data < n) {
         depth(n, node.right);
     }
@@ -19,10 +26,13 @@ function depth(n = null, node = tree.root) {
         depth(n, node.left);
     }
 
-    if (node !== tree.root) {
+    if (node !== root) {
         count++;
         return;
     }
+
+    root = null;
+    keepRoot = false;
 
     return console.log(`Depth of ${n} is ${count}`);
 
