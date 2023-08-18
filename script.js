@@ -9,7 +9,21 @@ import { depth } from './depth.js';
 import { isBalanced } from './isBalanced.js';
 import {reBalance} from './reBalance.js';
 
-const example = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 154];
+function randomArray() {
+    let array = [];
+
+    let randomLength = Math.floor(Math.random() * 20)
+
+    for (let i = 0; i < randomLength; i++) {
+        let randomNumber = Math.floor(Math.random() * 10000);
+        array.push(randomNumber);
+    }
+
+    return array;
+}
+
+const example = randomArray();
+// const example = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324, 154];
 // [1, 23, 8, 4, 3, 5, 7, 9, 67, 6345, 324, 154] // removed duplicates
 // [1, 3, 4, 5, 7, 8, 9, 23, 67, 154, 324, 6345] // Sorted
 // make new tree from example array
